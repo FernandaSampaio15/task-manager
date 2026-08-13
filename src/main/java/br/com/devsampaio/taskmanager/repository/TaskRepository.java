@@ -1,4 +1,9 @@
 package br.com.devsampaio.taskmanager.repository;
 
-public interface TaskRepository {
+import br.com.devsampaio.taskmanager.model.Task;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface TaskRepository extends JpaRepository<Task, Long> {
 }
