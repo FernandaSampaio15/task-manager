@@ -1,9 +1,12 @@
 package br.com.devsampaio.taskmanager.enums;
 
+import lombok.Getter;
+
+@Getter
 public enum TaskStatus {
 
     DONE("Tarefa feita"),
-    ON_PROGRESS("Tarefa em progresso"),
+    IN_PROGRESS("Tarefa em progresso"),
     TO_DO("Tarefa a fazer");
 
     final String description;
