@@ -41,6 +41,13 @@ public class TaskService {
         return mapper.toDto(savedTask);
     }
 
+    public TaskResponseDto updateTask(Long id, TaskRequestDto dto) {
+        Task task = searchForId(id);
+        mapper.updateEntityFromDto(dto, task);
+        log.info("Atualizando todos os campos da tarefa de ID {}", id);
+        return mapper.toDto(task);
+    }
+
     private Task searchForId(Long id) {
         return repository.findById(id).orElseThrow(() -> {
             log.warn("ID {} não encontrado no banco de dados", id);
