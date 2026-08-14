@@ -24,6 +24,12 @@ public class TaskService {
         return repository.findAll().stream().map(task -> mapper.toDto(task)).toList();
     }
 
+    public TaskResponseDto getById(Long id) {
+        Task task = searchForId(id);
+        log.info("Retornando ID {}", id);
+        return mapper.toDto(task);
+    }
+
     private Task searchForId(Long id) {
         return repository.findById(id).orElseThrow(() -> {
             log.warn("ID {} não encontrado no banco de dados", id);
