@@ -1,6 +1,7 @@
 package br.com.devsampaio.taskmanager.controller;
 
 import br.com.devsampaio.taskmanager.dto.TaskRequestDto;
+import br.com.devsampaio.taskmanager.dto.TaskRequestPatchDto;
 import br.com.devsampaio.taskmanager.dto.TaskResponseDto;
 import br.com.devsampaio.taskmanager.service.TaskService;
 import jakarta.validation.Valid;
@@ -37,6 +38,11 @@ public class TaskController {
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponseDto> update(@PathVariable Long id, @RequestBody @Valid TaskRequestDto dto) {
         return ResponseEntity.status(HttpStatus.OK).body(service.update(id, dto));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<TaskResponseDto> partialUpdate(@PathVariable Long id, @RequestBody @Valid TaskRequestPatchDto dto) {
+        return ResponseEntity.status((HttpStatus.OK)).body(service.partialUpdate(id, dto));
     }
 
 
