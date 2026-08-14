@@ -60,6 +60,13 @@ public class TaskService {
         return mapper.toDto(task);
     }
 
+    public void delete(Long id) {
+
+        Task task = searchForId(id);
+        repository.delete(task);
+        log.info("Deletando tarefa de ID {}", id);
+    }
+
     private Task searchForId(Long id) {
         return repository.findById(id).orElseThrow(() -> {
             log.warn("ID {} não encontrado no banco de dados", id);
