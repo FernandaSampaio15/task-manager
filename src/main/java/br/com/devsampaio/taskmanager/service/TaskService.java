@@ -43,7 +43,7 @@ public class TaskService {
     }
 
     @Transactional
-    public TaskResponseDto saveTask(TaskRequestDto dto) {
+    public TaskResponseDto create(TaskRequestDto dto) {
 
         Task task = mapper.toEntity(dto);
         log.info("Salvando tarefa de ID {} no banco de dados", task.getId());
@@ -52,7 +52,7 @@ public class TaskService {
     }
 
     @Transactional
-    public TaskResponseDto updateTask(Long id, TaskRequestDto dto) {
+    public TaskResponseDto update(Long id, TaskRequestDto dto) {
 
         Task task = searchForId(id);
 
@@ -63,7 +63,7 @@ public class TaskService {
     }
 
     @Transactional
-    public TaskResponseDto parcialUpdateTask(Long id, TaskRequestPatchDto dto) {
+    public TaskResponseDto partialUpdate(Long id, TaskRequestPatchDto dto) {
 
         Task task = searchForId(id);
 
