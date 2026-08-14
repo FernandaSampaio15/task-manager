@@ -29,7 +29,7 @@ public class TaskService {
 
         return repository.findAll()
                 .stream()
-                .map(task -> mapper.toDto(task))
+                .map(mapper::toDto)
                 .toList();
     }
 
