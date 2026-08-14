@@ -46,6 +46,8 @@ public class TaskService {
     public TaskResponseDto create(TaskRequestDto dto) {
 
         Task task = mapper.toEntity(dto);
+
+        repository.save(task);
         log.info("Salvando tarefa de ID {} no banco de dados", task.getId());
 
         return mapper.toDto(task);
