@@ -1,5 +1,6 @@
 package br.com.devsampaio.taskmanager.service;
 
+import br.com.devsampaio.taskmanager.dto.TaskRequestDto;
 import br.com.devsampaio.taskmanager.dto.TaskResponseDto;
 import br.com.devsampaio.taskmanager.exceptions.TaskNotFoundException;
 import br.com.devsampaio.taskmanager.mapper.TaskMapper;
@@ -28,6 +29,16 @@ public class TaskService {
         Task task = searchForId(id);
         log.info("Retornando ID {}", id);
         return mapper.toDto(task);
+    }
+
+    public TaskResponseDto saveTask(TaskRequestDto dto) {
+
+        Task task = mapper.toEntity(dto);
+        Task savedTask = repository.save(task);
+
+        log.info("Salvando tarefa de ID {} no banco de dados", task.getId());
+
+        return mapper.toDto(savedTask);
     }
 
     private Task searchForId(Long id) {
