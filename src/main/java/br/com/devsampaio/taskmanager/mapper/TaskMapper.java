@@ -5,6 +5,7 @@ import br.com.devsampaio.taskmanager.dto.TaskResponseDto;
 import br.com.devsampaio.taskmanager.model.Task;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface TaskMapper {
@@ -16,4 +17,9 @@ public interface TaskMapper {
 
 
     TaskResponseDto toDto(Task task);
+
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "createdAt", ignore = true)
+    @Mapping(target = "finishedAt", ignore = true)
+    void updateEntityFromDto(TaskRequestDto dto, @MappingTarget Task task);
 }
