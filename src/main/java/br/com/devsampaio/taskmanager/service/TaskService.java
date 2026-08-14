@@ -1,6 +1,7 @@
 package br.com.devsampaio.taskmanager.service;
 
 import br.com.devsampaio.taskmanager.dto.TaskRequestDto;
+import br.com.devsampaio.taskmanager.dto.TaskRequestPatchDto;
 import br.com.devsampaio.taskmanager.dto.TaskResponseDto;
 import br.com.devsampaio.taskmanager.exceptions.TaskNotFoundException;
 import br.com.devsampaio.taskmanager.mapper.TaskMapper;
@@ -45,6 +46,17 @@ public class TaskService {
         Task task = searchForId(id);
         mapper.updateEntityFromDto(dto, task);
         log.info("Atualizando todos os campos da tarefa de ID {}", id);
+        return mapper.toDto(task);
+    }
+
+    public TaskResponseDto parcialUpdateTask(Long id, TaskRequestPatchDto dto) {
+
+        Task task = searchForId(id);
+
+        mapper.parcialUpdateEntityFromDto(dto, task);
+
+        log.info("Atualizando campos específicos da tarefa de ID {}", id);
+
         return mapper.toDto(task);
     }
 
