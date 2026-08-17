@@ -36,7 +36,7 @@ public class TaskService {
     @Transactional(readOnly = true)
     public TaskResponseDto getById(Long id) {
 
-        Task task = searchForId(id);
+        Task task = findByIdOrThrow(id);
         log.info("Retornando ID {}", id);
 
         return mapper.toDto(task);
@@ -56,7 +56,7 @@ public class TaskService {
     @Transactional
     public TaskResponseDto update(Long id, TaskRequestDto dto) {
 
-        Task task = searchForId(id);
+        Task task = findByIdOrThrow(id);
 
         mapper.updateEntityFromDto(dto, task);
         log.info("Atualizando todos os campos da tarefa de ID {}", id);
@@ -67,7 +67,7 @@ public class TaskService {
     @Transactional
     public TaskResponseDto partialUpdate(Long id, TaskRequestPatchDto dto) {
 
-        Task task = searchForId(id);
+        Task task = findByIdOrThrow(id);
 
         mapper.partialUpdateEntityFromDto(dto, task);
         log.info("Atualizando campos específicos da tarefa de ID {}", id);
@@ -78,12 +78,12 @@ public class TaskService {
     @Transactional
     public void delete(Long id) {
 
-        Task task = searchForId(id);
+        Task task = findByIdOrThrow(id);
         repository.delete(task);
         log.info("Deletando tarefa de ID {}", id);
     }
 
-    private Task searchForId(Long id) {
+    private Task findByIdOrThrow(Long id) {
 
         return repository.findById(id)
                 .orElseThrow(() -> {
