@@ -26,5 +26,5 @@ public interface TaskMapper {
     @Mapping(target = "createdAt", ignore = true)
     @Mapping(target = "finishedAt", ignore = true)
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    void parcialUpdateEntityFromDto(TaskRequestPatchDto dto, @MappingTarget Task task);
+    void partialUpdateEntityFromDto(TaskRequestPatchDto dto, @MappingTarget Task task);
 }
