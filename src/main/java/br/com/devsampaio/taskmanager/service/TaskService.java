@@ -89,6 +89,6 @@ public class TaskService {
                 .orElseThrow(() -> {
             log.warn("ID {} não encontrado no banco de dados", id);
             return new TaskNotFoundException("ID " + id + " não encontrado no banco de dados");
-        } );
+        });
     }
 }
