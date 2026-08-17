@@ -58,6 +58,7 @@ public class TaskService {
 
         Task task = findByIdOrThrow(id);
 
+        // Salvamento automático implícito via Dirty Checking do Transactional
         mapper.updateEntityFromDto(dto, task);
         log.info("Atualizando todos os campos da tarefa de ID {}", id);
 
@@ -69,6 +70,7 @@ public class TaskService {
 
         Task task = findByIdOrThrow(id);
 
+        // Salvamento automático implícito via Dirty Checking do Transactional
         mapper.partialUpdateEntityFromDto(dto, task);
         log.info("Atualizando campos específicos da tarefa de ID {}", id);
 
@@ -84,11 +86,10 @@ public class TaskService {
     }
 
     private Task findByIdOrThrow(Long id) {
-
         return repository.findById(id)
                 .orElseThrow(() -> {
-            log.warn("ID {} não encontrado no banco de dados", id);
-            return new TaskNotFoundException("ID " + id + " não encontrado no banco de dados");
-        });
+                    log.warn("ID {} não encontrado no banco de dados", id);
+                    return new TaskNotFoundException("ID " + id + " não encontrado no banco de dados");
+                });
     }
 }
