@@ -69,7 +69,7 @@ public class TaskService {
 
         Task task = searchForId(id);
 
-        mapper.parcialUpdateEntityFromDto(dto, task);
+        mapper.partialUpdateEntityFromDto(dto, task);
         log.info("Atualizando campos específicos da tarefa de ID {}", id);
 
         return mapper.toDto(task);
