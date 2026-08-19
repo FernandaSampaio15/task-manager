@@ -19,8 +19,8 @@ Uma API RESTful desenvolvida com **Java** e **Spring Boot** para o gerenciamento
 * **Framework:** Spring Boot 3+
   * Spring Web
   * Spring Data JPA
-* **Banco de Dados:** H2 Database / PostgreSQL
-* **Ferramenta de Build:** Maven / Gradle
-* **Testes/Documentação de API:** Postman / Insomnia / Swagger
+* **Banco de Dados:** PostgreSQL
+* **Ferramenta de Build:** Maven 
+* **Testes/Documentação de API:** Postman / Swagger
 
 ---
